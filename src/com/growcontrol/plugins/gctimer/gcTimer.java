@@ -21,7 +21,7 @@ public class gcTimer extends gcServerPlugin {
 				PluginDefines.CONFIG_PATH,
 				PluginDefines.CONFIG_FILE,
 				PluginConfig.class,
-				true
+				gcTimer.class
 		);
 		if(this.config == null) {
 			this.fail("Failed to load "+PluginDefines.CONFIG_FILE);
