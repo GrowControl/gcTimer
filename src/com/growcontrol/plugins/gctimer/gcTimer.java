@@ -18,6 +18,7 @@ public class gcTimer extends gcServerPlugin {
 	protected void onEnable() {
 		// load config
 		this.config = (PluginConfig) xConfigLoader.Load(
+				PluginDefines.CONFIG_PATH,
 				PluginDefines.CONFIG_FILE,
 				PluginConfig.class,
 				true
