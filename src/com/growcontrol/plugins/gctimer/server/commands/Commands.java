@@ -1,4 +1,4 @@
-package com.growcontrol.plugins.gctimer.commands;
+package com.growcontrol.plugins.gctimer.server.commands;
 
 import com.poixson.commonjava.EventListener.xEvent;
 import com.poixson.commonjava.EventListener.xEvent.Priority;

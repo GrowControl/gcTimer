@@ -1,4 +1,4 @@
-package com.growcontrol.plugins.gctimer.configs;
+package com.growcontrol.plugins.gctimer.server.configs;
 
 import java.util.Map;
 import java.util.Set;

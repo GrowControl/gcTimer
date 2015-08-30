@@ -1,4 +1,4 @@
-package com.growcontrol.plugins.gctimer.gui;
+package com.growcontrol.plugins.gctimer.client;
 
 import com.growcontrol.client.plugins.gcClientPlugin;
 

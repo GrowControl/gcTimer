@@ -1,7 +1,8 @@
-package com.growcontrol.plugins.gctimer;
+package com.growcontrol.plugins.gctimer.server;
 
-import com.growcontrol.plugins.gctimer.commands.Commands;
-import com.growcontrol.plugins.gctimer.configs.PluginConfig;
+import com.growcontrol.plugins.gctimer.PluginDefines;
+import com.growcontrol.plugins.gctimer.server.commands.Commands;
+import com.growcontrol.plugins.gctimer.server.configs.PluginConfig;
 import com.growcontrol.server.plugins.gcServerPlugin;
 import com.poixson.commonapp.config.xConfigLoader;
 import com.poixson.commonjava.xLogger.xLog;
