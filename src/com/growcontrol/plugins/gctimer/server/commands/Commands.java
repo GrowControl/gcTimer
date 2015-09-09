@@ -1,9 +1,8 @@
 package com.growcontrol.plugins.gctimer.server.commands;
 
-import com.poixson.commonjava.EventListener.xEvent;
-import com.poixson.commonjava.EventListener.xEvent.Priority;
-import com.poixson.commonjava.xLogger.handlers.xCommandEvent;
-import com.poixson.commonjava.xLogger.handlers.xCommandListener;
+import com.poixson.commonjava.xEvents.annotations.xEvent;
+import com.poixson.commonjava.xLogger.commands.xCommandEvent;
+import com.poixson.commonjava.xLogger.commands.xCommandListener;
 
 
 public class Commands implements xCommandListener {
@@ -14,8 +13,8 @@ public class Commands implements xCommandListener {
 	// plugin commands
 	@Override
 	@xEvent(
-			priority=Priority.NORMAL,
-			threaded=false,
+			priority=ListenerPriority.NORMAL,
+//			async=false,
 			filterHandled=true,
 			filterCancelled=true)
 	public void onCommand(final xCommandEvent event) {
