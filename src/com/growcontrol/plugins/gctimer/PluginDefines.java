@@ -11,7 +11,6 @@ public final class PluginDefines {
 	public static final String CONFIG_PATH = utilsDirFile.mergePaths("plugins", "gcTimer");
 	public static final String CONFIG_FILE = "gcTimer.yml";
 	// config keys
-	public static final String CONFIG_VERSION = "Version";
 	// timers
 	public static final String CONFIG_TIMERS  = "Timers";
 	public static final String CONFIG_TIMER_ENABLED = "Enabled";
