@@ -1,14 +1,14 @@
 package com.growcontrol.plugins.gctimer.server;
 
+import com.growcontrol.api.serverapi.plugins.apiServerPlugin;
 import com.growcontrol.plugins.gctimer.PluginDefines;
 import com.growcontrol.plugins.gctimer.server.commands.Commands;
 import com.growcontrol.plugins.gctimer.server.configs.PluginConfig;
-import com.growcontrol.server.plugins.gcServerPlugin;
 import com.poixson.commonapp.config.xConfigLoader;
 import com.poixson.commonjava.xLogger.xLog;
 
 
-public class gcTimer extends gcServerPlugin {
+public class gcTimer extends apiServerPlugin {
 	public static final String LOG_NAME = "gcTimer";
 
 	private volatile PluginConfig config = null;
