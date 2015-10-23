@@ -13,7 +13,6 @@ import com.poixson.commonjava.xLogger.xLog;
 
 
 public class TimerConfig implements xHashable {
-	private static final String LOG_NAME = "CONFIG";
 
 	public final String key;
 
@@ -37,7 +36,7 @@ public class TimerConfig implements xHashable {
 				final TimerConfig cfg = get(datamap);
 				configs.put(cfg.getKey(), cfg);
 			} catch (Exception e) {
-xLog.getRoot(LOG_NAME).trace(e);
+				log().trace(e);
 			}
 		}
 		return configs;
@@ -96,11 +95,8 @@ xLog.getRoot(LOG_NAME).trace(e);
 
 
 	// logger
-	private volatile xLog _log = null;
-	public xLog log() {
-		if(this._log == null)
-			this._log = xLog.getRoot(LOG_NAME);
-		return this._log;
+	public static xLog log() {
+		return PluginConfig.log();
 	}
 
 
