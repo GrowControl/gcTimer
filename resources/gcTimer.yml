@@ -1,10 +1,10 @@
-Timers:
+Devices:
 - Name: SpanBlink
   Type: span
   Enabled: true
   Output: aaa
   Range: 8s
-  Spans:
+  Tracks:
   - On: 2s
     Off: 3s
 - Name: TickerBlink
@@ -12,7 +12,7 @@ Timers:
   Enabled: true
   Output: bbb
   Range: 10
-  Spans:
+  Tracks:
   - On: 2
     Off: 3
 - Name: CronBlink
@@ -20,6 +20,6 @@ Timers:
   Enabled: true
   Output: ccc
   Range: 15s
-  Spans:
+  Tracks:
   - On: 2s
     Off: 3s

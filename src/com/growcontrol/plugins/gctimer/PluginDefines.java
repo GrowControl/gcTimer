@@ -12,8 +12,8 @@ public final class PluginDefines {
 	public static final String CONFIG_FILE = "gcTimer.yml";
 	// config keys
 	// timers
-	public static final String CONFIG_TIMERS  = "Timers";
-	public static final String CONFIG_TIMER_ENABLED = "Enabled";
+	public static final String CONFIG_DEVICES  = "Devices";
+	public static final String CONFIG_DEVICE_ENABLED = "Enabled";
 
 
 }
