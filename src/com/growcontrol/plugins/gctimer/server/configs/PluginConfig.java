@@ -1,65 +1,62 @@
 package com.growcontrol.plugins.gctimer.server.configs;
 
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import com.growcontrol.common.gcCommonDefines;
 import com.growcontrol.plugins.gctimer.PluginDefines;
-import com.growcontrol.plugins.gctimer.server.gcTimer;
 import com.poixson.commonapp.config.xConfig;
-import com.poixson.commonjava.Utils.utils;
-import com.poixson.commonjava.xLogger.xLog;
+import com.poixson.commonapp.config.xConfigException;
 
 
 public class PluginConfig extends xConfig {
-	private static final String LOG_NAME = "CONFIG";
 
-	private volatile Map<String, TimerConfig> timerConfigs = null;
+	public final String version;
+
+	private volatile Map<String, DeviceConfig> deviceConfigs = null;
 	private final Object configLock = new Object();
 
 
 
-	public PluginConfig(final Map<String, Object> datamap) {
+	public PluginConfig(final Map<String, Object> datamap)
+			throws xConfigException {
 		super(datamap);
+		this.version = this.getString(gcCommonDefines.CONFIG_VERSION);
 	}
 
 
 
 	// plugin version
 	public String getVersion() {
-		final String value = this.getString(gcCommonDefines.CONFIG_VERSION);
-		if(utils.isEmpty(value))
-			return null;
-		return value;
+		return this.version;
 	}
 
 
 
-
-	// timer configs
-	public Map<String, TimerConfig> getTimerConfigs() {
-		if(this.timerConfigs == null) {
+	// timer device configs
+	public Map<String, DeviceConfig> getDeviceConfigs()
+			throws xConfigException {
+		if(this.deviceConfigs == null) {
 			synchronized(this.configLock) {
-				if(this.timerConfigs == null) {
-					final Set<Object> dataset = this.getSet(
-							Object.class,
-							PluginDefines.CONFIG_TIMERS
+				if(this.deviceConfigs == null) {
+					final List<xConfig> configsList =
+						this.getConfigList(
+								PluginDefines.CONFIG_DEVICES,
+								DeviceConfig.class
 					);
-					this.timerConfigs = TimerConfig.get(dataset);
+					final LinkedHashMap<String, DeviceConfig> devicesMap =
+							new LinkedHashMap<String, DeviceConfig>();
+					for(final xConfig cfg : configsList) {
+						final DeviceConfig d = (DeviceConfig) cfg;
+						devicesMap.put(d.getKey(), d);
+					}
+					this.deviceConfigs = Collections.unmodifiableMap(devicesMap);
 				}
 			}
 		}
-		return this.timerConfigs;
-	}
-
-
-
-	// logger
-	private static volatile xLog _log = null;
-	public static xLog log() {
-		if(_log == null)
-			_log = gcTimer.getLogger(LOG_NAME);
-		return _log;
+		return this.deviceConfigs;
 	}
 
 

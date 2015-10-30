@@ -1,18 +1,13 @@
 package com.growcontrol.plugins.gctimer.server.configs;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import com.growcontrol.plugins.gctimer.PluginDefines;
 import com.poixson.commonapp.config.xConfig;
-import com.poixson.commonjava.Utils.utils;
-import com.poixson.commonjava.Utils.utilsObject;
 import com.poixson.commonjava.Utils.xHashable;
-import com.poixson.commonjava.xLogger.xLog;
 
 
-public class TimerConfig implements xHashable {
+public class DeviceConfig extends xConfig implements xHashable {
 
 	public final String key;
 
@@ -20,48 +15,19 @@ public class TimerConfig implements xHashable {
 
 
 
-	// configs from set
-	public static Map<String, TimerConfig> get(final Set<Object> dataset) {
-		if(utils.isEmpty(dataset))
-			return null;
-		final Map<String, TimerConfig> configs = new HashMap<String, TimerConfig>();
-		for(final Object obj : dataset) {
-			try {
-				final Map<String, Object> datamap =
-						utilsObject.castMap(
-								String.class,
-								Object.class,
-								obj
-						);
-				final TimerConfig cfg = get(datamap);
-				configs.put(cfg.getKey(), cfg);
-			} catch (Exception e) {
-				log().trace(e);
-			}
-		}
-		return configs;
-	}
-	// config from map
-	public static TimerConfig get(final Map<String, Object> datamap) {
-		if(utils.isEmpty(datamap))
-			return null;
-		final xConfig config = new xConfig(datamap);
-		// default to enabled if key doesn't exist
-		final boolean enabled =
-				config.exists(PluginDefines.CONFIG_TIMER_ENABLED)
-				? config.getBool(PluginDefines.CONFIG_TIMER_ENABLED, false)
-				: true;
-		return new TimerConfig(
-				enabled
+	public DeviceConfig(final Map<String, Object> datamap) {
+		super(datamap);
+		this.enabled = this.getBool(
+				PluginDefines.CONFIG_DEVICE_ENABLED,
+				false
 		);
+		this.key = this.genKey();
 	}
 
 
 
-	// new config instance
-	public TimerConfig(final boolean enabled) {
-		this.enabled = enabled;
-		this.key = this.genKey();
+	public boolean getEnabled() {
+		return this.enabled;
 	}
 
 
@@ -84,19 +50,12 @@ public class TimerConfig implements xHashable {
 	}
 	@Override
 	public boolean matches(final xHashable hashable) {
-		if(hashable == null || !(hashable instanceof TimerConfig) )
+		if(hashable == null || !(hashable instanceof DeviceConfig) )
 			return false;
-		final TimerConfig config = (TimerConfig) hashable;
+		final DeviceConfig config = (DeviceConfig) hashable;
 		if(this.enabled != config.enabled)
 			return false;
 		return this.getKey().equalsIgnoreCase(config.getKey());
-	}
-
-
-
-	// logger
-	public static xLog log() {
-		return PluginConfig.log();
 	}
 
 
