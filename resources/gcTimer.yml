@@ -1,25 +1,25 @@
 Devices:
-- Name: SpanBlink
-  Type: span
-  Enabled: true
-  Output: aaa
-  Range: 8s
-  Tracks:
-  - On: 2s
-    Off: 3s
-- Name: TickerBlink
-  Type: ticker
-  Enabled: true
-  Output: bbb
-  Range: 10
-  Tracks:
-  - On: 2
-    Off: 3
-- Name: CronBlink
-  Type: cron
-  Enabled: true
-  Output: ccc
-  Range: 15s
-  Tracks:
-  - On: 2s
-    Off: 3s
+  - Name: SpanBlink
+    Type: span
+    Enabled: true
+    Output: aaa
+    Range: 8s
+    Tracks:
+      - On: 2s
+        Off: 3s
+  - Name: TickerBlink
+    Type: ticker
+    Enabled: true
+    Output: bbb
+    Range: 10
+    Tracks:
+      - On: 2
+        Off: 3
+  - Name: CronBlink
+    Type: cron
+    Enabled: true
+    Output: ccc
+    Range: 15s
+    Tracks:
+      - On: 2s
+        Off: 3s
