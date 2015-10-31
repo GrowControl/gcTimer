@@ -15,8 +15,7 @@ public class PluginConfig extends xConfig {
 
 	public final String version;
 
-	private volatile Map<String, DeviceConfig> deviceConfigs = null;
-	private final Object configLock = new Object();
+	private final Map<String, DeviceConfig> deviceConfigs;
 
 
 
@@ -24,6 +23,21 @@ public class PluginConfig extends xConfig {
 			throws xConfigException {
 		super(datamap);
 		this.version = this.getString(gcCommonDefines.CONFIG_VERSION);
+		this.deviceConfigs = this.loadDeviceConfigs();
+	}
+	private Map<String, DeviceConfig> loadDeviceConfigs()
+			throws xConfigException {
+		final List<xConfig> configsList = this.getConfigList(
+				PluginDefines.CONFIG_DEVICES,
+				DeviceConfig.class
+		);
+		final LinkedHashMap<String, DeviceConfig> devicesMap =
+				new LinkedHashMap<String, DeviceConfig>();
+		for(final xConfig cfg : configsList) {
+			final DeviceConfig d = (DeviceConfig) cfg;
+			devicesMap.put(d.getKey(), d);
+		}
+		return Collections.unmodifiableMap(devicesMap);
 	}
 
 
@@ -32,30 +46,8 @@ public class PluginConfig extends xConfig {
 	public String getVersion() {
 		return this.version;
 	}
-
-
-
 	// timer device configs
-	public Map<String, DeviceConfig> getDeviceConfigs()
-			throws xConfigException {
-		if(this.deviceConfigs == null) {
-			synchronized(this.configLock) {
-				if(this.deviceConfigs == null) {
-					final List<xConfig> configsList =
-						this.getConfigList(
-								PluginDefines.CONFIG_DEVICES,
-								DeviceConfig.class
-					);
-					final LinkedHashMap<String, DeviceConfig> devicesMap =
-							new LinkedHashMap<String, DeviceConfig>();
-					for(final xConfig cfg : configsList) {
-						final DeviceConfig d = (DeviceConfig) cfg;
-						devicesMap.put(d.getKey(), d);
-					}
-					this.deviceConfigs = Collections.unmodifiableMap(devicesMap);
-				}
-			}
-		}
+	public Map<String, DeviceConfig> getDeviceConfigs() {
 		return this.deviceConfigs;
 	}
 
