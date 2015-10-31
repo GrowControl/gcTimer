@@ -5,6 +5,7 @@ import com.growcontrol.plugins.gctimer.PluginDefines;
 import com.growcontrol.plugins.gctimer.server.commands.Commands;
 import com.growcontrol.plugins.gctimer.server.configs.PluginConfig;
 import com.poixson.commonapp.config.xConfig;
+import com.poixson.commonapp.config.xConfigException;
 import com.poixson.commonjava.xLogger.xLog;
 
 
@@ -18,13 +19,18 @@ public class gcTimer extends apiServerPlugin {
 	@Override
 	protected void onEnable() {
 		// load config
-		this.config = (PluginConfig) xConfig.Load(
-				getLogger(),
-				PluginDefines.CONFIG_PATH,
-				PluginDefines.CONFIG_FILE,
-				PluginConfig.class,
-				gcTimer.class
-		);
+		try {
+			this.config = (PluginConfig) xConfig.Load(
+					getLogger(),
+					PluginDefines.CONFIG_PATH,
+					PluginDefines.CONFIG_FILE,
+					PluginConfig.class,
+					gcTimer.class
+			);
+		} catch (xConfigException e) {
+			this.log().trace(e);
+			this.config = null;
+		}
 		if(this.config == null) {
 			this.fail("Failed to load "+PluginDefines.CONFIG_FILE);
 			return;

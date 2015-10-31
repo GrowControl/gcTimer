@@ -4,6 +4,7 @@ import java.util.Map;
 
 import com.growcontrol.plugins.gctimer.PluginDefines;
 import com.poixson.commonapp.config.xConfig;
+import com.poixson.commonapp.config.xConfigException;
 import com.poixson.commonjava.Utils.xHashable;
 
 
@@ -15,7 +16,8 @@ public class DeviceConfig extends xConfig implements xHashable {
 
 
 
-	public DeviceConfig(final Map<String, Object> datamap) {
+	public DeviceConfig(final Map<String, Object> datamap)
+			throws xConfigException {
 		super(datamap);
 		this.enabled = this.getBool(
 				PluginDefines.CONFIG_DEVICE_ENABLED,
