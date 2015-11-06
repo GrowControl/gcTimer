@@ -1,11 +1,17 @@
 package com.growcontrol.plugins.gctimer.server;
 
+import java.util.Map;
+import java.util.Set;
+
 import com.growcontrol.api.serverapi.plugins.apiServerPlugin;
 import com.growcontrol.plugins.gctimer.PluginDefines;
 import com.growcontrol.plugins.gctimer.server.commands.Commands;
+import com.growcontrol.plugins.gctimer.server.configs.DeviceConfig;
 import com.growcontrol.plugins.gctimer.server.configs.PluginConfig;
+import com.growcontrol.plugins.gctimer.server.devices.TimerDevice;
 import com.poixson.commonapp.config.xConfig;
 import com.poixson.commonapp.config.xConfigException;
+import com.poixson.commonjava.Utils.Keeper;
 import com.poixson.commonjava.xLogger.xLog;
 
 
@@ -37,6 +43,18 @@ public class gcTimer extends apiServerPlugin {
 		}
 		if(this.config.isFromResource())
 			xLog.getRoot(LOG_NAME).warning("Created default "+PluginDefines.CONFIG_FILE);
+		// start timers
+		final Map<String, DeviceConfig> deviceConfigs =
+				this.config.getDeviceConfigs();
+		final Set<TimerDevice> devices =
+				TimerDevice.loadAll(
+						deviceConfigs
+				);
+		if(devices == null) {
+			this.fail("Failed to start timer devices!");
+			return;
+		}
+		Keeper.add(devices);
 		// register listeners
 		this.register(new Commands());
 	}
