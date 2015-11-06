@@ -1,25 +1,38 @@
+Version: 3.6.1
 Devices:
-  - Name: SpanBlink
-    Type: span
-    Enabled: true
-    Output: aaa
-    Range: 8s
-    Tracks:
-      - On: 2s
-        Off: 3s
-  - Name: TickerBlink
-    Type: ticker
-    Enabled: true
-    Output: bbb
-    Range: 10
-    Tracks:
-      - On: 2
-        Off: 3
   - Name: CronBlink
+    Title: Cron Blink (on 5s every minute, on 20s every 5 minutes)
     Type: cron
     Enabled: true
-    Output: ccc
+    Initial: off
+    Output: aaa
     Range: 15s
     Tracks:
-      - On: 2s
-        Off: 3s
+      - Pattern: '* * * * *'
+        Duration: 5s
+      - Pattern: '*/5 * * * *'
+        Duration: 20s
+  - Name: SpanBlink
+    Title: Span Blink (on 1s, off 1s, on 1s every 8s)
+    Type: span
+    Enabled: true
+    Initial: off
+    Output: bbb
+    Range: 8s
+    Tracks:
+      - Time On: 1s
+        Time Off: 2s
+      - Time On: 3s
+        Time Off: 4s
+  - Name: TickerBlink
+    Title: Ticker Blink (on 1 tick, off 1 tick, on 1 tick, every 10 ticks)
+    Type: ticker
+    Enabled: true
+    Initial: off
+    Output: ccc
+    Range: 10
+    Tracks:
+      - Tick On: 1
+        Tick Off: 2
+      - Tick On: 3
+        Tick Off: 4
