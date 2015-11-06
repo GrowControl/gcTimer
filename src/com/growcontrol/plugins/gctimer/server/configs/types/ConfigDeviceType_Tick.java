@@ -13,7 +13,7 @@ import com.poixson.commonjava.Utils.utilsObject;
 import com.poixson.commonjava.Utils.xTime;
 
 
-public class ConfigDeviceType_Ticker extends DeviceConfig {
+public class ConfigDeviceType_Tick extends DeviceConfig {
 
 	private final int   rangeInt;
 	private final xTime range;
@@ -21,7 +21,7 @@ public class ConfigDeviceType_Ticker extends DeviceConfig {
 
 
 
-	public ConfigDeviceType_Ticker(final Map<String, Object> datamap)
+	public ConfigDeviceType_Tick(final Map<String, Object> datamap)
 			throws xConfigException {
 		super(datamap);
 		this.rangeInt = this.getInteger(PluginDefines.CONFIG_DEVICE_RANGE).intValue();
@@ -64,7 +64,7 @@ public class ConfigDeviceType_Ticker extends DeviceConfig {
 
 	@Override
 	public String getTypeStr() {
-		return "ticker";
+		return "tick";
 	}
 	public int getRangeStr() {
 		return this.rangeInt;

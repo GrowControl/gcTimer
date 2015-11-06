@@ -6,7 +6,7 @@ import com.growcontrol.common.meta.MetaAddress;
 import com.growcontrol.plugins.gctimer.PluginDefines;
 import com.growcontrol.plugins.gctimer.server.configs.types.ConfigDeviceType_Cron;
 import com.growcontrol.plugins.gctimer.server.configs.types.ConfigDeviceType_Span;
-import com.growcontrol.plugins.gctimer.server.configs.types.ConfigDeviceType_Ticker;
+import com.growcontrol.plugins.gctimer.server.configs.types.ConfigDeviceType_Tick;
 import com.poixson.commonapp.config.xConfig;
 import com.poixson.commonapp.config.xConfigException;
 import com.poixson.commonjava.Utils.utils;
@@ -43,7 +43,7 @@ public abstract class DeviceConfig extends xConfig implements xHashable {
 			return new ConfigDeviceType_Span(datamap);
 		case "tick":
 		case "ticker":
-			return new ConfigDeviceType_Ticker(datamap);
+			return new ConfigDeviceType_Tick(datamap);
 		}
 		return null;
 	}
