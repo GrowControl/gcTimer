@@ -10,13 +10,11 @@ import com.growcontrol.plugins.gctimer.server.configs.DeviceConfig;
 import com.poixson.commonapp.config.xConfig;
 import com.poixson.commonapp.config.xConfigException;
 import com.poixson.commonjava.Utils.utilsObject;
-import com.poixson.commonjava.Utils.xTime;
 
 
 public class ConfigDeviceType_Tick extends DeviceConfig {
 
-	private final int   rangeInt;
-	private final xTime range;
+	private final int range;
 	private final List<Track> tracks;
 
 
@@ -24,9 +22,8 @@ public class ConfigDeviceType_Tick extends DeviceConfig {
 	public ConfigDeviceType_Tick(final Map<String, Object> datamap)
 			throws xConfigException {
 		super(datamap);
-		this.rangeInt = this.getInteger(PluginDefines.CONFIG_DEVICE_RANGE).intValue();
-		this.range = xTime.get(this.rangeInt)
-				.setFinal();
+		final Integer rangeInt = this.getInteger(PluginDefines.CONFIG_DEVICE_RANGE).intValue();
+		this.range = rangeInt.intValue();
 		this.tracks = this.loadTracks();
 		this.key = this.genKey();
 	}
@@ -49,8 +46,8 @@ public class ConfigDeviceType_Tick extends DeviceConfig {
 			if(offInt == null) throw new xConfigException("Invalid Off value for ticker timer track!");
 			final int on  = onInt.intValue();
 			final int off = offInt.intValue();
-			if(on  < 0 || on  > this.getRange().value) throw new xConfigException("Invalid On value for ticker timer track! "+Integer.toString(on));
-			if(off < 0 || off > this.getRange().value) throw new xConfigException("Invalid Off value for ticker timer track! "+Integer.toString(off));
+			if(on  < 0 || on  > this.getRange()) throw new xConfigException("Invalid On value for ticker timer track! "+Integer.toString(on));
+			if(off < 0 || off > this.getRange()) throw new xConfigException("Invalid Off value for ticker timer track! "+Integer.toString(off));
 			final Track track = new Track(
 					on,
 					off
@@ -66,10 +63,7 @@ public class ConfigDeviceType_Tick extends DeviceConfig {
 	public String getTypeStr() {
 		return "tick";
 	}
-	public int getRangeStr() {
-		return this.rangeInt;
-	}
-	public xTime getRange() {
+	public int getRange() {
 		return this.range;
 	}
 	public List<Track> getTracks() {
