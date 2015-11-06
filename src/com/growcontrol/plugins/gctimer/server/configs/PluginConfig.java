@@ -13,7 +13,7 @@ import com.poixson.commonapp.config.xConfigException;
 
 public class PluginConfig extends xConfig {
 
-	public final String version;
+	private final String version;
 
 	private final Map<String, DeviceConfig> deviceConfigs;
 

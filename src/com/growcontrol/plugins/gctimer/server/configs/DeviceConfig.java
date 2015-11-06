@@ -10,9 +10,9 @@ import com.poixson.commonjava.Utils.xHashable;
 
 public class DeviceConfig extends xConfig implements xHashable {
 
-	public final String key;
+	protected volatile String key = null;
 
-	public final boolean enabled;
+	private final boolean enabled;
 
 
 
@@ -28,7 +28,7 @@ public class DeviceConfig extends xConfig implements xHashable {
 
 
 
-	public boolean getEnabled() {
+	public boolean isEnabled() {
 		return this.enabled;
 	}
 
