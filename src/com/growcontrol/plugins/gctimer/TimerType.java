@@ -15,10 +15,13 @@ public enum TimerType {
 			return null;
 		switch(str.toLowerCase()) {
 		// span timer
+		// clock timer
+		case "clock":
 		case "span":
+		case "interval":
 		case "repeat":
 		case "repeating":
-			return TimerType.SPAN;
+			return TimerType.CLOCK;
 		// ticker timer
 		case "ticker":
 		case "tick":

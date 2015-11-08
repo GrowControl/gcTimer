@@ -14,7 +14,7 @@ import com.poixson.commonjava.Utils.utilsObject;
 import com.poixson.commonjava.Utils.xTime;
 
 
-public class ConfigDeviceType_Span extends DeviceConfig {
+public class ConfigDeviceType_Clock extends DeviceConfig {
 
 	private final String rangeStr;
 	private final xTime  range;
@@ -22,7 +22,7 @@ public class ConfigDeviceType_Span extends DeviceConfig {
 
 
 
-	public ConfigDeviceType_Span(final Map<String, Object> datamap)
+	public ConfigDeviceType_Clock(final Map<String, Object> datamap)
 			throws xConfigException {
 		super(datamap);
 		this.rangeStr = this.getString(PluginDefines.CONFIG_DEVICE_RANGE);
@@ -44,10 +44,10 @@ public class ConfigDeviceType_Span extends DeviceConfig {
 					obj
 			);
 			final xConfig cfg = new xConfig(map);
-			final String onStr  = cfg.getString(PluginDefines.CONFIG_DEVICE_TRACK_SPAN_ON);
-			final String offStr = cfg.getString(PluginDefines.CONFIG_DEVICE_TRACK_SPAN_OFF);
-			if(utils.isEmpty(onStr))  throw new xConfigException("On value is required in span timer config!");
-			if(utils.isEmpty(offStr)) throw new xConfigException("Off value is required in span timer config!");
+			final String onStr  = cfg.getString(PluginDefines.CONFIG_DEVICE_TRACK_CLOCK_ON);
+			final String offStr = cfg.getString(PluginDefines.CONFIG_DEVICE_TRACK_CLOCK_OFF);
+			if(utils.isEmpty(onStr))  throw new xConfigException("On value is required in clock timer config!");
+			if(utils.isEmpty(offStr)) throw new xConfigException("Off value is required in clock timer config!");
 			final Track track = new Track(
 					onStr,
 					offStr

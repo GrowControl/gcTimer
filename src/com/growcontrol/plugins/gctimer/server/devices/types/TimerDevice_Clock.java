@@ -3,15 +3,16 @@ package com.growcontrol.plugins.gctimer.server.devices.types;
 import java.io.IOException;
 
 import com.growcontrol.plugins.gctimer.server.configs.DeviceConfig;
+import com.growcontrol.plugins.gctimer.server.configs.types.ConfigDeviceType_Clock;
 import com.growcontrol.plugins.gctimer.server.devices.TimerDevice;
 import com.poixson.commonjava.Utils.xHashable;
 
 
-public class TimerDevice_Span extends TimerDevice {
+public class TimerDevice_Clock extends TimerDevice {
 
 
 
-	public TimerDevice_Span(final DeviceConfig config) {
+	public TimerDevice_Clock(final DeviceConfig config) {
 		super(config);
 	}
 

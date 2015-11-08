@@ -25,9 +25,9 @@ public final class PluginDefines {
 	// cron
 	public static final String CONFIG_DEVICE_TRACK_CRON_PATTERN  = "Pattern";
 	public static final String CONFIG_DEVICE_TRACK_CRON_DURATION = "Duration";
-	// span
-	public static final String CONFIG_DEVICE_TRACK_SPAN_ON       = "Time On";
-	public static final String CONFIG_DEVICE_TRACK_SPAN_OFF      = "Time Off";
+	// clock
+	public static final String CONFIG_DEVICE_TRACK_CLOCK_ON      = "Time On";
+	public static final String CONFIG_DEVICE_TRACK_CLOCK_OFF     = "Time Off";
 	// tick
 	public static final String CONFIG_DEVICE_TRACK_TICK_ON       = "Tick On";
 	public static final String CONFIG_DEVICE_TRACK_TICK_OFF      = "Tick Off";

@@ -12,9 +12,9 @@ Devices:
         Duration: 5s
       - Pattern: '*/5 * * * *'
         Duration: 20s
-  - Name: SpanBlink
-    Title: Span Blink (on 1s, off 1s, on 1s every 8s)
-    Type: span
+  - Name: ClockBlink
+    Title: Clock Blink (on 1s, off 1s, on 1s every 8s)
+    Type: clock
     Enabled: true
     Initial: off
     Output: bbb

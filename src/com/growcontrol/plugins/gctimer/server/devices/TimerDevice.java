@@ -8,8 +8,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import com.growcontrol.plugins.gctimer.PluginDefines;
 import com.growcontrol.plugins.gctimer.server.gcTimer;
 import com.growcontrol.plugins.gctimer.server.configs.DeviceConfig;
+import com.growcontrol.plugins.gctimer.server.devices.types.TimerDevice_Clock;
 import com.growcontrol.plugins.gctimer.server.devices.types.TimerDevice_Cron;
-import com.growcontrol.plugins.gctimer.server.devices.types.TimerDevice_Span;
 import com.growcontrol.plugins.gctimer.server.devices.types.TimerDevice_Tick;
 import com.poixson.commonjava.Utils.utils;
 import com.poixson.commonjava.Utils.xCloseable;
@@ -55,9 +55,8 @@ public abstract class TimerDevice implements xCloseable, xHashable {
 		case "cron":
 		case "crontab":
 			return new TimerDevice_Cron(config);
-		// span
-		case "span":
-			return new TimerDevice_Span(config);
+		case CLOCK:
+			return new TimerDevice_Clock(config);
 		// ticker
 		case "tick":
 		case "ticker":
